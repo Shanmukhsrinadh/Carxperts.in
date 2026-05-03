@@ -1,7 +1,6 @@
 import { useState, useMemo, useRef } from 'react';
 import cars from '../data/cars.json';
 import CarCard from '../components/CarCard';
-import BrandsSection from '../components/BrandsSection';
 import HowItWorks from '../components/HowItWorks';
 import AboutSection from '../components/AboutSection';
 import WhyUs from '../components/WhyUs';
@@ -18,12 +17,43 @@ const PRICE_RANGES = [
   { label: 'Above ₹35L', min: 3500000, max: Infinity },
 ];
 
+const BODY_TYPES = ['All', 'Hatchback', 'Sedan', 'SUV', 'Luxury'];
+
+const BODY_TYPE_ICONS = {
+  All: (
+    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+    </svg>
+  ),
+  Hatchback: (
+    <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M5 11l2-4h10l2 4H5zm-2 2v3h1a2 2 0 004 0h6a2 2 0 004 0h1v-3H3zm4 3a1 1 0 11-2 0 1 1 0 012 0zm10 0a1 1 0 11-2 0 1 1 0 012 0z"/>
+    </svg>
+  ),
+  Sedan: (
+    <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M4 11l3-5h10l3 5H4zm-1 2v3h1a2 2 0 004 0h8a2 2 0 004 0h1v-3H3zm4 3a1 1 0 11-2 0 1 1 0 012 0zm10 0a1 1 0 11-2 0 1 1 0 012 0z"/>
+    </svg>
+  ),
+  SUV: (
+    <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M3 11l3-6h12l3 6H3zm-1 2v4h1.5a2.5 2.5 0 005 0h7a2.5 2.5 0 005 0H21v-4H2zm5 4a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zm9 0a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z"/>
+    </svg>
+  ),
+  Luxury: (
+    <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M5 9l2-4h10l2 4H5zm-2 2v4h1a2 2 0 004 0h8a2 2 0 004 0h1v-4H3zm3.5 4a1 1 0 100-2 1 1 0 000 2zm10 0a1 1 0 100-2 1 1 0 000 2zM12 5v1" />
+    </svg>
+  ),
+};
+
 export default function Home({ compareList, onToggleCompare, onSellClick }) {
   const [brand, setBrand] = useState('All');
   const [fuel, setFuel] = useState('All');
   const [priceRange, setPriceRange] = useState(0);
   const [search, setSearch] = useState('');
   const [sort, setSort] = useState('default');
+  const [bodyType, setBodyType] = useState('All');
   const fleetRef = useRef(null);
 
   const filtered = useMemo(() => {
@@ -42,14 +72,16 @@ export default function Home({ compareList, onToggleCompare, onSellClick }) {
     return result;
   }, [brand, fuel, priceRange, search, sort]);
 
-  function handleBrandClick(brandName) {
-    setBrand(brandName);
-    fleetRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }
+  const displayed = useMemo(() => {
+    if (bodyType === 'All') return filtered;
+    return filtered.filter(car => car.bodyType === bodyType);
+  }, [filtered, bodyType]);
 
   function scrollToFleet() {
     fleetRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
+
+  const hasActiveFilters = brand !== 'All' || fuel !== 'All' || priceRange !== 0 || search || sort !== 'default';
 
   return (
     <div>
@@ -75,7 +107,6 @@ export default function Home({ compareList, onToggleCompare, onSellClick }) {
               Handpicked, verified pre-owned cars from 10 years of experience. Transparent pricing, zero hidden costs, and a story behind every car we sell.
             </p>
 
-            {/* CTAs */}
             <div className="flex flex-wrap gap-4 mb-14">
               <button
                 onClick={scrollToFleet}
@@ -94,7 +125,6 @@ export default function Home({ compareList, onToggleCompare, onSellClick }) {
               </a>
             </div>
 
-            {/* Stats */}
             <div className="flex flex-wrap gap-8 sm:gap-12">
               {[
                 { value: `${cars.length}+`, label: 'Cars in Fleet' },
@@ -110,16 +140,12 @@ export default function Home({ compareList, onToggleCompare, onSellClick }) {
             </div>
           </div>
         </div>
-        {/* Wave divider */}
         <div className="absolute bottom-0 left-0 right-0">
           <svg viewBox="0 0 1440 60" className="w-full" preserveAspectRatio="none" style={{ height: '60px' }}>
             <path d="M0,60 C360,0 1080,0 1440,60 L1440,60 L0,60 Z" fill="#f1f5f9" />
           </svg>
         </div>
       </section>
-
-      {/* ── BRANDS ── */}
-      <BrandsSection onBrandClick={handleBrandClick} />
 
       {/* ── HOW IT WORKS ── */}
       <HowItWorks />
@@ -135,8 +161,8 @@ export default function Home({ compareList, onToggleCompare, onSellClick }) {
             </p>
           </div>
 
-          {/* Filters */}
-          <div className="bg-white rounded-2xl shadow-md p-5 border border-slate-100 mb-8">
+          {/* ── Main Filter Bar ── */}
+          <div className="bg-white rounded-2xl shadow-md p-5 border border-slate-100 mb-4">
             <div className="flex flex-wrap gap-3 items-end">
               {/* Search */}
               <div className="flex-1 min-w-48">
@@ -208,9 +234,9 @@ export default function Home({ compareList, onToggleCompare, onSellClick }) {
               </div>
 
               {/* Reset */}
-              {(brand !== 'All' || fuel !== 'All' || priceRange !== 0 || search || sort !== 'default') && (
+              {hasActiveFilters && (
                 <button
-                  onClick={() => { setBrand('All'); setFuel('All'); setPriceRange(0); setSearch(''); setSort('default'); }}
+                  onClick={() => { setBrand('All'); setFuel('All'); setPriceRange(0); setSearch(''); setSort('default'); setBodyType('All'); }}
                   className="px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-500 hover:text-slate-800 border border-slate-200 hover:border-slate-300 transition"
                 >
                   Reset
@@ -219,11 +245,42 @@ export default function Home({ compareList, onToggleCompare, onSellClick }) {
             </div>
           </div>
 
+          {/* ── Body Type Pills ── */}
+          <div className="flex items-center gap-2 flex-wrap mb-6">
+            {BODY_TYPES.map(type => {
+              const count = type === 'All' ? filtered.length : filtered.filter(c => c.bodyType === type).length;
+              const active = bodyType === type;
+              return (
+                <button
+                  key={type}
+                  onClick={() => setBodyType(type)}
+                  disabled={count === 0}
+                  className={`inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-semibold transition-all duration-200 border ${
+                    active
+                      ? 'bg-sky-600 text-white border-sky-600 shadow-md'
+                      : count === 0
+                        ? 'text-slate-300 border-slate-200 cursor-not-allowed'
+                        : 'text-slate-600 border-slate-200 bg-white hover:border-sky-400 hover:text-sky-600 hover:bg-sky-50'
+                  }`}
+                >
+                  <span className={active ? 'text-white' : count === 0 ? 'text-slate-300' : 'text-slate-400'}>
+                    {BODY_TYPE_ICONS[type]}
+                  </span>
+                  {type}
+                  <span className={`text-xs font-bold px-1.5 py-0.5 rounded-full ${active ? 'bg-white/20 text-white' : 'bg-slate-100 text-slate-500'}`}>
+                    {count}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+
           {/* Count + compare hint */}
-          <div className="flex items-center justify-between mb-6">
+          <div className="flex items-center justify-between mb-5">
             <p className="text-sm text-slate-500">
-              Showing <span className="font-bold text-slate-800">{filtered.length}</span> of {cars.length} cars
+              Showing <span className="font-bold text-slate-800">{displayed.length}</span> of {cars.length} cars
               {brand !== 'All' && <span className="ml-1 text-sky-600 font-semibold">· {brand}</span>}
+              {bodyType !== 'All' && <span className="ml-1 text-sky-600 font-semibold">· {bodyType}</span>}
             </p>
             {compareList.length > 0 && (
               <span className="text-sm text-indigo-600 font-semibold">
@@ -233,7 +290,7 @@ export default function Home({ compareList, onToggleCompare, onSellClick }) {
           </div>
 
           {/* Grid */}
-          {filtered.length === 0 ? (
+          {displayed.length === 0 ? (
             <div className="text-center py-24 text-slate-400">
               <svg className="w-16 h-16 mx-auto mb-4 text-slate-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -242,9 +299,9 @@ export default function Home({ compareList, onToggleCompare, onSellClick }) {
               <p className="mt-1 text-sm">Try adjusting your search criteria</p>
             </div>
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 pb-10">
-              {filtered.map((car, i) => (
-                <div key={car.id} style={{ animationDelay: `${i * 60}ms` }}>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 pb-10">
+              {displayed.map((car, i) => (
+                <div key={car.id} className="fade-in" style={{ animationDelay: `${i * 50}ms` }}>
                   <CarCard car={car} compareList={compareList} onToggleCompare={onToggleCompare} />
                 </div>
               ))}
