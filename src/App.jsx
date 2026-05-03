@@ -34,7 +34,7 @@ export default function App() {
           <Routes>
             <Route
               path="/"
-              element={<Home compareList={compareList} onToggleCompare={handleToggleCompare} />}
+              element={<Home compareList={compareList} onToggleCompare={handleToggleCompare} onSellClick={() => setSellOpen(true)} />}
             />
             <Route
               path="/car/:id"
