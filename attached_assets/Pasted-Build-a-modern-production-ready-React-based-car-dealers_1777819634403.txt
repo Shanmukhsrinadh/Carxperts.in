@@ -1,0 +1,135 @@
+Build a modern, production-ready React-based car dealership website using a JSON file as the data source (no backend) in this project .
+
+TECH STACK:
+
+- React (Vite)
+- Tailwind CSS
+- No backend
+- State management using React hooks
+- Clean folder structure
+
+CORE FEATURES:
+
+1. FLEET DATA (JSON)
+
+- Create a JSON file containing car data:
+  - id
+  - name
+  - brand
+  - year
+  - price
+  - kmsDriven
+  - fuelType
+  - transmission
+  - insurance (yes/no)
+  - accidental (yes/no)
+  - financeAvailable (yes/no)
+  - tyreCondition
+  - sunroof (yes/no)
+  - color
+  - numberPlate (PRIVATE - DO NOT DISPLAY)
+  - images (array)
+
+2. HOME PAGE
+
+- Clean, premium layout (NOT template-like)
+- Hero section with bold typography
+- Grid-based car listing
+- Smooth hover effects
+- Filter options (brand, price, fuel)
+
+3. CAR CARD
+
+- Image preview
+- Key info (price, year, kms)
+- CTA buttons:
+  - "View Details"
+  - "WhatsApp"
+  - "Call"
+
+4. CAR DETAILS PAGE
+
+- Large image gallery (focus on visuals)
+- Sticky price + CTA section
+- Full specs:
+  - kms driven
+  - year
+  - accidental
+  - insurance
+  - finance availability
+  - etc
+- WhatsApp + Call CTA
+
+WHATSAPP LOGIC:
+
+- Generate message dynamically:
+  - Include car name
+  - Include last 4 digits of number plate as ID
+    Example:
+    "Hi, I'm interested in the Swift 2019 (ID: 4821). Please share more details."
+
+5. COMPARE FEATURE
+
+- Allow selecting up to 3 cars
+- Show side-by-side comparison table
+- Highlight differences
+
+6. NAVBAR
+
+- Minimal, modern
+- Logo space (left)
+- Links: Home, Compare, Sell Car
+
+7. FOOTER
+
+- Clean layout
+- Logo space
+- "Sell Your Car" CTA button
+
+8. SELL YOUR CAR POPUP (NO BACKEND)
+
+- Modal form with:
+  - Car name
+  - Brand
+  - Year
+  - KMs driven
+  - Accidental (yes/no)
+  - Insurance (yes/no)
+- On submit:
+  - Open WhatsApp with prefilled message containing form data
+
+9. DESIGN SYSTEM
+
+- Use a unique modern theme (avoid generic templates)
+- Suggested style:
+  - light + accent color (electric blue / light blue)
+  - Large typography
+  - Glassmorphism / soft shadows
+- Consistent spacing and hierarchy
+
+10. PERFORMANCE
+
+- Lazy load images
+- Responsive design (mobile-first)
+
+11. CLEAN CODE
+
+- Reusable components
+- Proper folder structure:
+  /components
+  /pages
+  /data
+  /utils
+
+12. EXTRA
+
+- Smooth transitions
+- Subtle animations (hover, fade-in)
+- Make it feel premium and modern
+
+IMPORTANT RULES:
+
+- Do NOT display number plates anywhere
+- Only use last 4 digits internally for WhatsApp messages
+- No backend or database
+- Code should be production-ready, not just a demo
