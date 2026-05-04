@@ -15,7 +15,7 @@ const REVIEWS = [
     avatarColor: 'from-sky-400 to-indigo-500',
     car: 'Toyota Fortuner 2021',
     rating: 5,
-    text: "Showed me the full inspection report before I even asked. No pressure, no upselling. Just honest people helping me find the right car.",
+    text: "Showed me the full inspection report before I even asked. No pressure, no upselling.",
   },
   {
     name: 'Sneha Kulkarni',
@@ -24,7 +24,7 @@ const REVIEWS = [
     avatarColor: 'from-violet-400 to-purple-500',
     car: 'Maruti Baleno 2022',
     rating: 5,
-    text: "Got a great EMI deal and drove home the same week! The car has been running like new for 6 months. Post-sale support is super responsive.",
+    text: "Got a great EMI deal and drove home the same week!",
   },
   {
     name: 'Rahul Desai',
@@ -33,7 +33,7 @@ const REVIEWS = [
     avatarColor: 'from-emerald-400 to-teal-500',
     car: 'BMW 3 Series 2020',
     rating: 5,
-    text: "The 150-point inspection report gave me the confidence I needed. Pricing was fair and the process was completely hassle-free. 10/10.",
+    text: "Pricing was fair and the process was completely hassle-free.",
   },
   {
     name: 'Meera Iyer',
@@ -42,7 +42,7 @@ const REVIEWS = [
     avatarColor: 'from-amber-400 to-orange-500',
     car: 'Tata Nexon EV 2023',
     rating: 5,
-    text: "They explained everything about battery health, charging, and warranty. Felt like advice from a friend, not a salesperson.",
+    text: "Felt like advice from a friend, not a salesperson.",
   },
   {
     name: 'Vikram Joshi',
@@ -51,35 +51,15 @@ const REVIEWS = [
     avatarColor: 'from-cyan-400 to-sky-500',
     car: 'Kia Seltos 2022',
     rating: 5,
-    text: "Used the compare feature and WhatsApped directly. Got a response within minutes. The entire journey was digital and smooth.",
-  },
-  {
-    name: 'Ananya Bose',
-    city: 'Kolkata',
-    avatar: 'AB',
-    avatarColor: 'from-fuchsia-400 to-pink-500',
-    car: 'Honda City 2020',
-    rating: 5,
-    text: "I was nervous about the RC transfer but they handled everything. Got the car home in 3 days. Best car buying experience ever.",
-  },
-  {
-    name: 'Karthik Menon',
-    city: 'Coimbatore',
-    avatar: 'KM',
-    avatarColor: 'from-lime-400 to-emerald-500',
-    car: 'Mahindra Scorpio N 2023',
-    rating: 5,
-    text: "Flew in from Coimbatore to pick up the car. Worth every minute. The team was professional and the car was exactly as shown online.",
+    text: "Entire journey was digital and smooth.",
   },
 ];
 
-function Stars() {
+function Stars({ count = 5 }) {
   return (
-    <div className="flex gap-0.5">
-      {[1,2,3,4,5].map(i => (
-        <svg key={i} className="w-3.5 h-3.5 text-amber-400" fill="currentColor" viewBox="0 0 20 20">
-          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-        </svg>
+    <div className="flex gap-1">
+      {Array.from({ length: count }).map((_, i) => (
+        <div key={i} className="w-3 h-3 bg-yellow-400 rounded-full" />
       ))}
     </div>
   );
@@ -87,31 +67,40 @@ function Stars() {
 
 function ReviewCard({ review }) {
   return (
-    <div className="w-full bg-white/5 border border-white/10 rounded-2xl p-5 hover:bg-white/8 transition-all duration-300">
-      <Stars />
-      <p className="text-slate-300 text-sm leading-relaxed mt-3 mb-4">"{review.text}"</p>
-      <div className="flex items-center gap-3 pt-3 border-t border-white/10">
-        <div className={`w-9 h-9 rounded-full bg-gradient-to-br ${review.avatarColor} flex items-center justify-center text-white text-xs font-black flex-shrink-0`}>
+    <div className="bg-white border border-gray-200 rounded-2xl p-5 shadow-sm 
+                    hover:shadow-xl hover:-translate-y-1 hover:scale-[1.02]
+                    transition-all duration-300">
+
+      <Stars count={review.rating} />
+
+      <p className="text-gray-700 text-sm mt-3 mb-4 leading-relaxed">
+        "{review.text}"
+      </p>
+
+      <div className="flex items-center gap-3 pt-3 border-t border-gray-100">
+        <div className={`w-9 h-9 rounded-full bg-gradient-to-br ${review.avatarColor}
+                        flex items-center justify-center text-white text-xs font-bold`}>
           {review.avatar}
         </div>
-        <div className="min-w-0">
-          <p className="text-white text-sm font-bold truncate">{review.name}</p>
-          <p className="text-slate-500 text-xs truncate">{review.city} · {review.car}</p>
+
+        <div>
+          <p className="text-gray-900 text-sm font-semibold">
+            {review.name}
+          </p>
+          <p className="text-gray-500 text-xs">
+            {review.city} · {review.car}
+          </p>
         </div>
       </div>
     </div>
   );
 }
 
-const COL1 = [...REVIEWS, ...REVIEWS];
-const COL2 = [...REVIEWS.slice(3), ...REVIEWS.slice(0, 3), ...REVIEWS.slice(3), ...REVIEWS.slice(0, 3)];
-const COL3 = [...REVIEWS.slice(5), ...REVIEWS.slice(0, 5), ...REVIEWS.slice(5), ...REVIEWS.slice(0, 5)];
-
 function Column({ data, speed }) {
   return (
-    <div className="overflow-hidden h-[520px] relative mask-fade">
-      <div className={`flex flex-col gap-4 ${speed}`}>
-        {data.map((review, i) => (
+    <div className="overflow-hidden h-[500px] relative mask-fade">
+      <div className={`flex flex-col gap-5 ${speed}`}>
+        {[...data, ...data].map((review, i) => (
           <ReviewCard key={i} review={review} />
         ))}
       </div>
@@ -120,27 +109,44 @@ function Column({ data, speed }) {
 }
 
 export default function Testimonials() {
+  const COLUMN_1 = REVIEWS;
+  const COLUMN_2 = [...REVIEWS.slice(2), ...REVIEWS.slice(0, 2)];
+  const COLUMN_3 = [...REVIEWS.slice(4), ...REVIEWS.slice(0, 4)];
+
   return (
-    <section className="py-20 bg-[#0f172a] overflow-hidden">
+    <section className="py-20 bg-white overflow-hidden">
+
+      {/* Header */}
       <div className="text-center mb-14 px-4">
-        <p className="text-xs font-bold text-sky-400 uppercase tracking-widest">Testimonials</p>
-        <h2 className="text-3xl sm:text-4xl font-black text-white mt-2">What Our Customers Say</h2>
-        <p className="text-slate-400 mt-3 max-w-md mx-auto text-sm">
-          Real stories from real people who found their perfect drive with AutoPrime.
+        <p className="text-xs font-semibold text-blue-600 uppercase tracking-widest">
+          Testimonials
+        </p>
+
+        <h2 className="text-3xl sm:text-4xl font-black text-gray-900 mt-2">
+          What our users say
+        </h2>
+
+        <p className="text-gray-600 mt-3 max-w-md mx-auto">
+          Discover how thousands of teams streamline their operations.
         </p>
       </div>
 
-      <div className="max-w-6xl mx-auto px-4">
-        {/* Mobile: 1 column */}
-        <div className="md:hidden">
-          <Column data={COL1} speed="animate-slow" />
+      {/* Columns */}
+      <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 px-4">
+
+        {/* Mobile = 1 */}
+        <Column data={COLUMN_1} speed="animate-slow" />
+
+        {/* Tablet = 2 */}
+        <div className="hidden sm:block">
+          <Column data={COLUMN_2} speed="animate-medium" />
         </div>
-        {/* Desktop: 3 columns, all scrolling up at different speeds */}
-        <div className="hidden md:grid md:grid-cols-3 gap-6">
-          <Column data={COL1} speed="animate-slow" />
-          <Column data={COL2} speed="animate-fast" />
-          <Column data={COL3} speed="animate-medium" />
+
+        {/* Desktop = 3 */}
+        <div className="hidden md:block">
+          <Column data={COLUMN_3} speed="animate-fast" />
         </div>
+
       </div>
     </section>
   );
