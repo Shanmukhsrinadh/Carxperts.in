@@ -105,55 +105,48 @@ function ReviewCard({ review }) {
   );
 }
 
-const COLUMN_1 = [...REVIEWS, ...REVIEWS];
-const COLUMN_2 = [...REVIEWS.slice(3), ...REVIEWS.slice(0, 3), ...REVIEWS.slice(3), ...REVIEWS.slice(0, 3)];
-const COLUMN_3 = [...REVIEWS.slice(5), ...REVIEWS.slice(0, 5), ...REVIEWS.slice(5), ...REVIEWS.slice(0, 5)];
+    const COLUMN_1 = [...REVIEWS, ...REVIEWS];
+    const COLUMN_2 = [...REVIEWS.slice(3), ...REVIEWS.slice(0, 3), ...REVIEWS.slice(3)];
+    const COLUMN_3 = [...REVIEWS.slice(5), ...REVIEWS.slice(0, 5), ...REVIEWS.slice(5)];
 
-function Column({ data, speed = 35 }) {
-  return (
-    <div className="overflow-hidden h-[520px] relative mask-fade">
-      <div
-        className="flex flex-col gap-4"
-        style={{ animation: `verticalScroll ${speed}s linear infinite` }}
-      >
-        {data.map((review, i) => (
-          <ReviewCard key={i} review={review} />
-        ))}
-      </div>
-    </div>
-  );
-}
-
-export default function Testimonials() {
-  return (
-    <section className="py-20 bg-[#0f172a] overflow-hidden">
-      {/* Header */}
-      <div className="text-center mb-14 px-4">
-        <p className="text-xs font-semibold text-blue-400 uppercase tracking-widest">
-          Testimonials
-        </p>
-        <h2 className="text-3xl sm:text-4xl font-black text-white mt-2">
-          What our customers say
-        </h2>
-        <p className="text-slate-400 mt-3 max-w-md mx-auto text-sm">
-          Real stories from real people who found their perfect drive with AutoPrime.
-        </p>
-      </div>
-
-      {/* Columns — 1 on mobile, 3 on md+ */}
-      <div className="max-w-6xl mx-auto px-4">
-        {/* Mobile: single scrolling column */}
-        <div className="md:hidden">
-          <Column data={COLUMN_1} speed={30} />
+    function Column({ data, reverse }) {
+      return (
+        <div className="overflow-hidden h-[500px] relative">
+          <div
+            className={`flex flex-col gap-4 animate-vertical ${
+              reverse ? "animate-vertical-reverse" : ""
+            }`}
+          >
+            {data.map((review, i) => (
+              <ReviewCard key={i} review={review} />
+            ))}
+          </div>
         </div>
+      );
+    }
 
-        {/* Desktop: 3 columns all scrolling upward */}
-        <div className="hidden md:grid md:grid-cols-3 gap-6">
-          <Column data={COLUMN_1} speed={32} />
-          <Column data={COLUMN_2} speed={38} />
-          <Column data={COLUMN_3} speed={35} />
-        </div>
-      </div>
-    </section>
-  );
-}
+    export default function Testimonials() {
+      return (
+        <section className="py-24 bg-white overflow-hidden">
+          {/* Header */}
+          <div className="text-center mb-16">
+            <p className="text-xs font-semibold text-blue-500 uppercase tracking-widest">
+              Testimonials
+            </p>
+            <h2 className="text-4xl font-black text-gray-900 mt-2">
+              What our users say
+            </h2>
+            <p className="text-gray-500 mt-3 max-w-md mx-auto">
+              Discover how thousands of teams streamline their operations with our platform.
+            </p>
+          </div>
+
+          {/* Columns */}
+          <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 px-4">
+            <Column data={COLUMN_1} />
+            <Column data={COLUMN_2} reverse />
+            <Column data={COLUMN_3} />
+          </div>
+        </section>
+      );
+    }
