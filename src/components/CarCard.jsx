@@ -3,8 +3,7 @@ import { formatPrice, buildWhatsAppMessage, WHATSAPP_NUMBER, CALL_NUMBER } from 
 
 const KM_ICON = (
   <svg className="w-3.5 h-3.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8}
-      d="M13 10V3L4 14h7v7l9-11h-7z" />
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M13 10V3L4 14h7v7l9-11h-7z" />
   </svg>
 );
 const FUEL_ICON = (
@@ -36,26 +35,17 @@ export default function CarCard({ car, compareList, onToggleCompare }) {
   const isInCompare = compareList.some(c => c.id === car.id);
   const whatsappMsg = buildWhatsAppMessage(car);
 
-  const CompareBtn = ({ cls }) => (
-    <button
-      onClick={e => { e.stopPropagation(); onToggleCompare(car); }}
-      title={isInCompare ? 'Remove from compare' : 'Add to compare'}
-      className={cls}
-    >
-      {isInCompare
-        ? <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7"/></svg>
-        : <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
-      }
-    </button>
-  );
-
   return (
-    /* overflow-visible so the arrow button can hang below the card */
+    /*
+      overflow-visible is essential — the corner arrow button and shine overlay
+      must be able to visually exceed the card boundary.
+    */
     <div
       onClick={() => navigate(`/car/${car.id}`)}
       className="car-card relative bg-white rounded-2xl cursor-pointer fade-in group"
+      style={{ overflow: 'visible' }}
     >
-      {/* ── Shine overlay (covers whole card, pointer-events-none) ── */}
+      {/* Shine sweep overlay */}
       <div className="shine-sweep pointer-events-none rounded-2xl" />
 
       {/* ══════ MOBILE — compact horizontal ══════ */}
@@ -74,7 +64,15 @@ export default function CarCard({ car, compareList, onToggleCompare }) {
               <p className="text-sm font-black text-slate-800 leading-tight truncate">{car.name}</p>
               <p className="text-base font-black text-gradient leading-tight">{formatPrice(car.price)}</p>
             </div>
-            <CompareBtn cls={`w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 transition-all ${isInCompare ? 'bg-indigo-600 text-white' : 'bg-slate-100 text-slate-400 hover:bg-indigo-50 hover:text-indigo-500'}`} />
+            <button
+              onClick={e => { e.stopPropagation(); onToggleCompare(car); }}
+              className={`w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 transition-all ${isInCompare ? 'bg-indigo-600 text-white' : 'bg-slate-100 text-slate-400 hover:bg-indigo-50 hover:text-indigo-500'}`}
+            >
+              {isInCompare
+                ? <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7"/></svg>
+                : <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+              }
+            </button>
           </div>
           <div className="flex items-center gap-2 text-[10px] text-slate-500">
             <span className="font-semibold">{car.year}</span>
@@ -83,6 +81,7 @@ export default function CarCard({ car, compareList, onToggleCompare }) {
             <span className="text-slate-300">·</span>
             <span>{car.fuelType}</span>
           </div>
+          {/* Mobile keeps quick contacts */}
           <div className="flex gap-1.5">
             <a href={`https://wa.me/${WHATSAPP_NUMBER}?text=${whatsappMsg}`} target="_blank" rel="noopener noreferrer"
               onClick={e => e.stopPropagation()}
@@ -98,14 +97,14 @@ export default function CarCard({ car, compareList, onToggleCompare }) {
       </div>
 
       {/* ══════ DESKTOP — card-image style ══════ */}
-      <div className="hidden sm:block">
+      <div className="hidden sm:block rounded-2xl overflow-hidden border border-slate-100/80">
 
-        {/* Image zone — clipped to rounded top */}
-        <div className="relative h-48 overflow-hidden rounded-t-2xl bg-gradient-to-b from-slate-100 to-white">
+        {/* ── Image zone ── */}
+        <div className="relative h-48 overflow-hidden bg-gradient-to-b from-slate-100 to-white">
           <img src={car.images[0]} alt={car.name} loading="lazy"
             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.05]" />
 
-          {/* Subtle dark gradient at bottom of image */}
+          {/* Subtle bottom gradient */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
 
           {/* Badges — top left */}
@@ -118,81 +117,68 @@ export default function CarCard({ car, compareList, onToggleCompare }) {
             )}
           </div>
 
-          {/* Body type pill — bottom left */}
+          {/* Body type — bottom left */}
           <span className="absolute bottom-3 left-3 text-[10px] font-bold px-2 py-0.5 rounded-full bg-black/45 text-white backdrop-blur-sm">
             {car.bodyType}
           </span>
 
           {/* Compare — top right */}
-          <CompareBtn cls={`absolute top-3 right-3 w-7 h-7 rounded-full flex items-center justify-center shadow-md transition-all duration-200 ${isInCompare ? 'bg-indigo-600 text-white' : 'bg-white/90 text-slate-400 hover:text-indigo-600 hover:bg-white'}`} />
+          <button
+            onClick={e => { e.stopPropagation(); onToggleCompare(car); }}
+            title={isInCompare ? 'Remove from compare' : 'Add to compare'}
+            className={`absolute top-3 right-3 w-7 h-7 rounded-full flex items-center justify-center shadow-md transition-all duration-200 ${isInCompare ? 'bg-indigo-600 text-white' : 'bg-white/90 text-slate-400 hover:text-indigo-600 hover:bg-white'}`}
+          >
+            {isInCompare
+              ? <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7"/></svg>
+              : <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+            }
+          </button>
         </div>
 
-        {/* Info zone — NOT overflow-hidden so arrow can hang below */}
-        <div className="relative bg-white rounded-b-2xl border border-t-0 border-slate-100 px-4 pt-3.5 pb-14">
-
-          {/* Brand */}
+        {/* ── Info zone ── */}
+        <div className="bg-white px-4 pt-3.5 pb-10">
           <p className="text-[10px] font-bold text-sky-600 uppercase tracking-widest mb-0.5">{car.brand}</p>
-
-          {/* Car name */}
           <h3 className="text-[15px] font-black text-slate-800 leading-snug mb-3">{car.name}</h3>
 
           {/* Specs row */}
           <div className="flex items-center gap-2.5 mb-4 text-[11px] text-slate-500 flex-wrap">
             <span className="flex items-center gap-1 font-medium">
-              {KM_ICON}
-              {(car.kmsDriven / 1000).toFixed(0)}k km
+              {KM_ICON} {(car.kmsDriven / 1000).toFixed(0)}k km
             </span>
             <span className="w-px h-3 bg-slate-200 flex-shrink-0" />
             <span className="flex items-center gap-1 font-medium">
-              {FUEL_ICON}
-              {car.fuelType}
+              {FUEL_ICON} {car.fuelType}
             </span>
             <span className="w-px h-3 bg-slate-200 flex-shrink-0" />
             <span className="flex items-center gap-1 font-medium">
-              {GEAR_ICON}
-              {car.transmission}
+              {GEAR_ICON} {car.transmission}
             </span>
           </div>
 
-          {/* Price + quick contacts */}
-          <div className="flex items-end justify-between">
-            <div>
-              <p className="text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-0.5">All-in price</p>
-              <p className="text-xl font-black text-gradient leading-none">{formatPrice(car.price)}</p>
-            </div>
-            <div className="flex items-center gap-2">
-              <a
-                href={`https://wa.me/${WHATSAPP_NUMBER}?text=${whatsappMsg}`}
-                target="_blank" rel="noopener noreferrer"
-                onClick={e => e.stopPropagation()}
-                title="WhatsApp"
-                className="w-8 h-8 rounded-full bg-green-50 border border-green-100 flex items-center justify-center text-green-600 hover:bg-green-500 hover:text-white hover:border-green-500 transition-all duration-200 shadow-sm"
-              >{WA_ICON}</a>
-              <a
-                href={`tel:${CALL_NUMBER.replace(/\s/g, '')}`}
-                onClick={e => e.stopPropagation()}
-                title="Call"
-                className="w-8 h-8 rounded-full bg-slate-50 border border-slate-200 flex items-center justify-center text-slate-500 hover:bg-slate-800 hover:text-white hover:border-slate-800 transition-all duration-200 shadow-sm"
-              >{CALL_ICON}</a>
-            </div>
+          {/* Price */}
+          <div>
+            <p className="text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-0.5">All-in price</p>
+            <p className="text-xl font-black text-gradient leading-none">{formatPrice(car.price)}</p>
           </div>
-
-          {/* ── Arrow CTA — hangs below card bottom-right ── */}
-          <button
-            onClick={e => { e.stopPropagation(); navigate(`/car/${car.id}`); }}
-            title="View details"
-            className="arrow-btn absolute -bottom-5 right-5 w-10 h-10 rounded-full flex items-center justify-center text-white shadow-lg z-20"
-          >
-            {/* Arrow: -45deg by default (↗), rotates to 0deg (→) on hover via CSS */}
-            <svg
-              className="arrow-icon w-5 h-5"
-              fill="none" viewBox="0 0 24 24" stroke="currentColor"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-            </svg>
-          </button>
         </div>
       </div>
+
+      {/*
+        ── Arrow button — desktop only ──
+        Centered exactly on the bottom-right corner of the card.
+        translate(50%, 50%) moves it so its CENTER sits at the corner point,
+        creating the "floating outside the card" look from the reference design.
+        z-30 keeps it above everything.
+      */}
+      <button
+        onClick={e => { e.stopPropagation(); navigate(`/car/${car.id}`); }}
+        title="View details"
+        className="arrow-btn hidden sm:flex absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2 w-11 h-11 rounded-full items-center justify-center text-white shadow-xl z-30"
+      >
+        <svg className="arrow-icon w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+        </svg>
+      </button>
     </div>
   );
 }
