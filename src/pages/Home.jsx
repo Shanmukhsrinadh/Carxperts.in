@@ -299,7 +299,7 @@ export default function Home({ compareList, onToggleCompare, onSellClick }) {
               <p className="mt-1 text-sm">Try adjusting your search criteria</p>
             </div>
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 pb-10">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 pb-14 pt-2">
               {displayed.map((car, i) => (
                 <div key={car.id} className="fade-in" style={{ animationDelay: `${i * 50}ms` }}>
                   <CarCard car={car} compareList={compareList} onToggleCompare={onToggleCompare} />

@@ -110,54 +110,47 @@ function ReviewCard({ review }) {
   );
 }
 
-export default function Testimonials() {
-  const rowA = [...REVIEWS, ...REVIEWS];
-  const rowB = [...REVIEWS.slice(4), ...REVIEWS.slice(0, 4), ...REVIEWS.slice(4), ...REVIEWS.slice(0, 4)];
+const COLUMN_1 = [...REVIEWS, ...REVIEWS];
+const COLUMN_2 = [...REVIEWS.slice(3), ...REVIEWS.slice(0, 3), ...REVIEWS.slice(3)];
+const COLUMN_3 = [...REVIEWS.slice(5), ...REVIEWS.slice(0, 5), ...REVIEWS.slice(5)];
 
+function Column({ data, reverse }) {
   return (
-    <section className="py-20 overflow-hidden" style={{ background: 'linear-gradient(135deg, #0a1120 0%, #0c1a3a 60%, #0f2557 100%)' }}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12 text-center">
-        <p className="text-xs font-bold text-sky-500 uppercase tracking-widest mb-2">Real Stories</p>
-        <h2 className="text-3xl sm:text-4xl font-black text-white">Loved by 2,000+ Customers</h2>
-        <p className="text-slate-400 mt-3 max-w-lg mx-auto text-base">
-          Don't take our word for it — hear what our customers say about their AutoPrime experience.
+    <div className="overflow-hidden h-[500px] relative mask-fade">
+      <div
+        className={`flex flex-col gap-4 animate-vertical ${
+          reverse ? "animate-vertical-reverse" : ""
+        }`}
+      >
+        {data.map((review, i) => (
+          <ReviewCard key={i} review={review} />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+export default function Testimonials() {
+  return (
+    <section className="py-24 bg-white overflow-hidden">
+      {/* Header */}
+      <div className="text-center mb-16">
+        <p className="text-xs font-semibold text-blue-500 uppercase tracking-widest">
+          Testimonials
+        </p>
+        <h2 className="text-4xl font-black text-gray-900 mt-2">
+          What our users say
+        </h2>
+        <p className="text-gray-500 mt-3 max-w-md mx-auto">
+          Discover how thousands of teams streamline their operations with our platform.
         </p>
       </div>
 
-      {/* Row 1 — left to right */}
-      <div className="marquee-wrapper mb-4">
-        <div className="marquee-track py-1">
-          {rowA.map((review, i) => (
-            <ReviewCard key={`a-${i}`} review={review} />
-          ))}
-        </div>
-      </div>
-
-      {/* Row 2 — right to left */}
-      <div className="marquee-wrapper">
-        <div className="marquee-track-reverse py-1">
-          {rowB.map((review, i) => (
-            <ReviewCard key={`b-${i}`} review={review} />
-          ))}
-        </div>
-      </div>
-
-      {/* Trust strip */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-14">
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-          {[
-            { value: '4.9 / 5', label: 'Avg Rating', sub: '1,800+ reviews' },
-            { value: '98%', label: 'Recommend Us', sub: 'To friends & family' },
-            { value: '< 48 hrs', label: 'Finance Approval', sub: 'On average' },
-            { value: '7 Days', label: 'Return Policy', sub: 'No questions asked' },
-          ].map(stat => (
-            <div key={stat.label} className="bg-white/5 border border-white/10 rounded-2xl p-5 text-center hover:bg-white/8 transition">
-              <p className="text-2xl font-black text-gradient mb-0.5">{stat.value}</p>
-              <p className="text-sm font-bold text-white">{stat.label}</p>
-              <p className="text-xs text-slate-500 mt-0.5">{stat.sub}</p>
-            </div>
-          ))}
-        </div>
+      {/* Columns */}
+      <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 px-4">
+        <Column data={COLUMN_1} />
+        <Column data={COLUMN_2} reverse />
+        <Column data={COLUMN_3} />
       </div>
     </section>
   );
