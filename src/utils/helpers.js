@@ -15,9 +15,8 @@ export function getPlateId(numberPlate) {
 }
 
 export function buildWhatsAppMessage(car) {
-  const id = getPlateId(car.numberPlate);
   return encodeURIComponent(
-    `Hi, I'm interested in the ${car.name} ${car.year} (ID: ${id}). Please share more details.`
+    `Hi, I'm interested in the ${car.name} (${car.year}, ${car.fuelType}, ${car.transmission}) listed at ${formatPrice(car.price)}. Please share more details.`
   );
 }
 
