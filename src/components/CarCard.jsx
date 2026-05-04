@@ -27,11 +27,11 @@ export default function CarCard({ car, compareList, onToggleCompare }) {
   const MobileCard = () => (
     <div
       onClick={() => navigate(`/car/${car.id}`)}
-      className="sm:hidden flex items-stretch bg-white rounded-2xl overflow-hidden shadow-sm border border-slate-100 cursor-pointer active:scale-[0.98] transition-transform"
-      style={{ minHeight: '90px' }}
+      className="sm:hidden flex items-stretch bg-white rounded-xl overflow-hidden shadow-sm border border-slate-100 cursor-pointer active:scale-[0.98] transition-transform"
+      style={{ height: '72px' }}
     >
       {/* Image */}
-      <div className="relative flex-shrink-0 w-28 bg-slate-100">
+      <div className="relative flex-shrink-0 w-20 bg-slate-100">
         <img
           src={car.images[0]}
           alt={car.name}
@@ -39,42 +39,42 @@ export default function CarCard({ car, compareList, onToggleCompare }) {
           className="w-full h-full object-cover"
         />
         {car.financeAvailable === 'yes' && (
-          <span className="absolute bottom-1.5 left-1.5 text-[9px] font-bold px-1.5 py-0.5 rounded-full bg-sky-500 text-white leading-none">
+          <span className="absolute bottom-1 left-1 text-[8px] font-bold px-1 py-0.5 rounded-full bg-sky-500 text-white leading-none">
             EMI
           </span>
         )}
       </div>
 
       {/* Content */}
-      <div className="flex-1 min-w-0 px-3 py-2.5 flex flex-col justify-between">
+      <div className="flex-1 min-w-0 px-2.5 py-1.5 flex flex-col justify-between">
         {/* Top row */}
         <div className="flex items-start justify-between gap-1">
           <div className="min-w-0">
-            <p className="text-[9px] font-bold text-sky-600 uppercase tracking-widest leading-none mb-0.5 truncate">
+            <p className="text-[8px] font-bold text-sky-600 uppercase tracking-widest leading-none mb-0.5 truncate">
               {car.brand}
             </p>
-            <p className="text-[13px] font-black text-slate-800 leading-tight truncate">
+            <p className="text-[12px] font-black text-slate-800 leading-tight truncate">
               {car.name}
             </p>
           </div>
-          {/* Compare pill */}
+          {/* Compare button */}
           <button
             onClick={(e) => { stop(e); onToggleCompare(car); }}
-            className={`flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center border transition-all ${
+            className={`flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center border transition-all ${
               isInCompare
                 ? 'bg-indigo-600 border-indigo-600 text-white'
                 : 'bg-white border-slate-200 text-slate-400'
             }`}
           >
             {isInCompare
-              ? <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7"/></svg>
-              : <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4"/></svg>
+              ? <svg className="w-2.5 h-2.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7"/></svg>
+              : <svg className="w-2.5 h-2.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4"/></svg>
             }
           </button>
         </div>
 
         {/* Specs inline */}
-        <div className="flex items-center gap-1.5 text-[10px] text-slate-400 font-medium">
+        <div className="flex items-center gap-1 text-[9px] text-slate-400 font-medium">
           <span>{car.year}</span>
           <span className="text-slate-200">·</span>
           <span>{(car.kmsDriven / 1000).toFixed(0)}k km</span>
@@ -84,23 +84,23 @@ export default function CarCard({ car, compareList, onToggleCompare }) {
 
         {/* Bottom row — price + quick actions */}
         <div className="flex items-center justify-between">
-          <p className="text-[15px] font-black text-gradient leading-none">
+          <p className="text-[13px] font-black text-gradient leading-none">
             {formatPrice(car.price)}
           </p>
-          <div className="flex items-center gap-1.5">
+          <div className="flex items-center gap-1">
             <a
               href={`https://wa.me/${WHATSAPP_NUMBER}?text=${whatsappMsg}`}
               target="_blank"
               rel="noopener noreferrer"
               onClick={stop}
-              className="w-7 h-7 rounded-full bg-green-50 border border-green-200 flex items-center justify-center text-green-600 hover:bg-green-500 hover:text-white transition-all"
+              className="w-6 h-6 rounded-full bg-green-50 border border-green-200 flex items-center justify-center text-green-600 hover:bg-green-500 hover:text-white transition-all"
             >
               {WA_ICON}
             </a>
             <a
               href={`tel:${CALL_NUMBER.replace(/\s/g, '')}`}
               onClick={stop}
-              className="w-7 h-7 rounded-full bg-slate-50 border border-slate-200 flex items-center justify-center text-slate-500 hover:bg-slate-700 hover:text-white transition-all"
+              className="w-6 h-6 rounded-full bg-slate-50 border border-slate-200 flex items-center justify-center text-slate-500 hover:bg-slate-700 hover:text-white transition-all"
             >
               {CALL_ICON}
             </a>
