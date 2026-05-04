@@ -24,7 +24,7 @@ const REVIEWS = [
     avatarColor: 'from-violet-400 to-purple-500',
     car: 'Maruti Baleno 2022',
     rating: 5,
-    text: "Got a great EMI deal and drove home the same week! The car's been running like new for 6 months. Post-sale support is super responsive.",
+    text: "Got a great EMI deal and drove home the same week! The car has been running like new for 6 months. Post-sale support is super responsive.",
   },
   {
     name: 'Rahul Desai',
@@ -73,10 +73,10 @@ const REVIEWS = [
   },
 ];
 
-function Stars({ count = 5 }) {
+function Stars() {
   return (
     <div className="flex gap-0.5">
-      {Array.from({ length: count }).map((_, i) => (
+      {[1,2,3,4,5].map(i => (
         <svg key={i} className="w-3.5 h-3.5 text-amber-400" fill="currentColor" viewBox="0 0 20 20">
           <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
         </svg>
@@ -87,11 +87,9 @@ function Stars({ count = 5 }) {
 
 function ReviewCard({ review }) {
   return (
-    <div className="w-full bg-white/5 border border-white/10 rounded-2xl p-5 hover:bg-white/10 hover:border-white/20 transition-all duration-300">
-      <Stars count={review.rating} />
-      <p className="text-slate-300 text-sm leading-relaxed mt-3 mb-4">
-        "{review.text}"
-      </p>
+    <div className="w-full bg-white/5 border border-white/10 rounded-2xl p-5 hover:bg-white/8 transition-all duration-300">
+      <Stars />
+      <p className="text-slate-300 text-sm leading-relaxed mt-3 mb-4">"{review.text}"</p>
       <div className="flex items-center gap-3 pt-3 border-t border-white/10">
         <div className={`w-9 h-9 rounded-full bg-gradient-to-br ${review.avatarColor} flex items-center justify-center text-white text-xs font-black flex-shrink-0`}>
           {review.avatar}
@@ -105,17 +103,14 @@ function ReviewCard({ review }) {
   );
 }
 
-const COLUMN_1 = [...REVIEWS, ...REVIEWS];
-const COLUMN_2 = [...REVIEWS.slice(3), ...REVIEWS.slice(0, 3), ...REVIEWS.slice(3), ...REVIEWS.slice(0, 3)];
-const COLUMN_3 = [...REVIEWS.slice(5), ...REVIEWS.slice(0, 5), ...REVIEWS.slice(5), ...REVIEWS.slice(0, 5)];
+const COL1 = [...REVIEWS, ...REVIEWS];
+const COL2 = [...REVIEWS.slice(3), ...REVIEWS.slice(0, 3), ...REVIEWS.slice(3), ...REVIEWS.slice(0, 3)];
+const COL3 = [...REVIEWS.slice(5), ...REVIEWS.slice(0, 5), ...REVIEWS.slice(5), ...REVIEWS.slice(0, 5)];
 
-function Column({ data, speed = 35 }) {
+function Column({ data, speed }) {
   return (
     <div className="overflow-hidden h-[520px] relative mask-fade">
-      <div
-        className="flex flex-col gap-4"
-        style={{ animation: `verticalScroll ${speed}s linear infinite` }}
-      >
+      <div className={`flex flex-col gap-4 ${speed}`}>
         {data.map((review, i) => (
           <ReviewCard key={i} review={review} />
         ))}
@@ -127,31 +122,24 @@ function Column({ data, speed = 35 }) {
 export default function Testimonials() {
   return (
     <section className="py-20 bg-[#0f172a] overflow-hidden">
-      {/* Header */}
       <div className="text-center mb-14 px-4">
-        <p className="text-xs font-semibold text-blue-400 uppercase tracking-widest">
-          Testimonials
-        </p>
-        <h2 className="text-3xl sm:text-4xl font-black text-white mt-2">
-          What our customers say
-        </h2>
+        <p className="text-xs font-bold text-sky-400 uppercase tracking-widest">Testimonials</p>
+        <h2 className="text-3xl sm:text-4xl font-black text-white mt-2">What Our Customers Say</h2>
         <p className="text-slate-400 mt-3 max-w-md mx-auto text-sm">
           Real stories from real people who found their perfect drive with AutoPrime.
         </p>
       </div>
 
-      {/* Columns — 1 on mobile, 3 on md+ */}
       <div className="max-w-6xl mx-auto px-4">
-        {/* Mobile: single scrolling column */}
+        {/* Mobile: 1 column */}
         <div className="md:hidden">
-          <Column data={COLUMN_1} speed={30} />
+          <Column data={COL1} speed="animate-slow" />
         </div>
-
-        {/* Desktop: 3 columns all scrolling upward */}
+        {/* Desktop: 3 columns, all scrolling up at different speeds */}
         <div className="hidden md:grid md:grid-cols-3 gap-6">
-          <Column data={COLUMN_1} speed={32} />
-          <Column data={COLUMN_2} speed={38} />
-          <Column data={COLUMN_3} speed={35} />
+          <Column data={COL1} speed="animate-slow" />
+          <Column data={COL2} speed="animate-fast" />
+          <Column data={COL3} speed="animate-medium" />
         </div>
       </div>
     </section>

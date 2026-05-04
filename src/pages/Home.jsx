@@ -1,6 +1,7 @@
 import { useState, useMemo, useRef } from 'react';
 import cars from '../data/cars.json';
 import CarCard from '../components/CarCard';
+import Hero from '../components/Hero';
 import HowItWorks from '../components/HowItWorks';
 import AboutSection from '../components/AboutSection';
 import WhyUs from '../components/WhyUs';
@@ -81,77 +82,28 @@ export default function Home({ compareList, onToggleCompare, onSellClick }) {
     fleetRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
+  function handleBrowse(query) {
+    setSearch(query);
+    setBrand('All');
+    setFuel('All');
+    setPriceRange(0);
+    setSort('default');
+    setBodyType('All');
+    setTimeout(() => {
+      fleetRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 80);
+  }
+
   const hasActiveFilters = brand !== 'All' || fuel !== 'All' || priceRange !== 0 || search || sort !== 'default';
 
   return (
     <div>
-      {/* ── HERO ── */}
-      <section className="hero-gradient relative overflow-hidden">
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full bg-sky-500/10 blur-3xl" />
-          <div className="absolute bottom-0 right-1/4 w-72 h-72 rounded-full bg-indigo-500/10 blur-3xl" />
-          <div className="absolute top-1/3 right-1/3 w-48 h-48 rounded-full bg-violet-500/10 blur-2xl" />
-        </div>
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 sm:py-32">
-          <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-sky-500/20 border border-sky-500/30 mb-7">
-              <span className="w-2 h-2 rounded-full bg-sky-400 animate-pulse" />
-              <span className="text-sky-300 text-xs font-semibold uppercase tracking-wider">Mumbai's Most Trusted Pre-Owned Cars</span>
-            </div>
-            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-black text-white leading-none tracking-tight mb-6">
-              Find Your
-              <br />
-              <span className="text-gradient">Perfect Drive</span>
-            </h1>
-            <p className="text-slate-300 text-lg sm:text-xl mb-10 leading-relaxed max-w-xl">
-              Handpicked, verified pre-owned cars from 10 years of experience. Transparent pricing, zero hidden costs, and a story behind every car we sell.
-            </p>
 
-            <div className="flex flex-wrap gap-4 mb-14">
-              <button
-                onClick={scrollToFleet}
-                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl btn-primary text-white font-bold shadow-lg hover:opacity-90 transition"
-              >
-                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                </svg>
-                Browse Fleet
-              </button>
-              <a
-                href="#about"
-                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl border border-white/20 text-white font-bold hover:bg-white/10 transition"
-              >
-                Our Story
-              </a>
-            </div>
+      {/* ── 1. HERO ── */}
+      <Hero onSellClick={onSellClick} onBrowse={handleBrowse} />
 
-            <div className="flex flex-wrap gap-8 sm:gap-12">
-              {[
-                { value: `${cars.length}+`, label: 'Cars in Fleet' },
-                { value: '2000+', label: 'Cars Sold' },
-                { value: '10 Yrs', label: 'In Business' },
-                { value: '4.9★', label: 'Customer Rating' },
-              ].map(stat => (
-                <div key={stat.label}>
-                  <p className="text-2xl sm:text-3xl font-black text-white">{stat.value}</p>
-                  <p className="text-slate-400 text-sm">{stat.label}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-        <div className="absolute bottom-0 left-0 right-0">
-          <svg viewBox="0 0 1440 60" className="w-full" preserveAspectRatio="none" style={{ height: '60px' }}>
-            <path d="M0,60 C360,0 1080,0 1440,60 L1440,60 L0,60 Z" fill="#f1f5f9" />
-          </svg>
-        </div>
-      </section>
-
-      {/* ── HOW IT WORKS ── */}
-      <HowItWorks />
-
-      {/* ── FLEET (with filters) ── */}
-      <section ref={fleetRef} id="fleet" className="bg-slate-50 pt-8 pb-4">
+      {/* ── 2. FLEET (with filters) ── */}
+      <section ref={fleetRef} id="fleet" className="bg-slate-50 pt-10 pb-4">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-10">
             <p className="text-xs font-bold text-sky-600 uppercase tracking-widest mb-2">Our Fleet</p>
@@ -310,17 +262,21 @@ export default function Home({ compareList, onToggleCompare, onSellClick }) {
         </div>
       </section>
 
-      {/* ── FINANCE + SELL BANNER ── */}
-      <FinanceBanner onSellClick={onSellClick} />
-
-      {/* ── WHY US ── */}
+      {/* ── 3. WHY US — trust building right after they see cars ── */}
       <WhyUs />
 
-      {/* ── ABOUT ── */}
+      {/* ── 4. HOW IT WORKS — process clarity ── */}
+      <HowItWorks />
+
+      {/* ── 5. TESTIMONIALS — social proof to seal the decision ── */}
+      <Testimonials />
+
+      {/* ── 6. FINANCE + SELL BANNER — action CTA ── */}
+      <FinanceBanner onSellClick={onSellClick} />
+
+      {/* ── 7. ABOUT — for those who want to know the story ── */}
       <AboutSection />
 
-      {/* ── TESTIMONIALS ── */}
-      <Testimonials />
     </div>
   );
 }
