@@ -6,7 +6,7 @@ const REVIEWS = [
     avatarColor: 'from-pink-400 to-rose-500',
     car: 'Hyundai Creta SX 2022',
     rating: 5,
-    text: "AutoPrime completely changed my mind about buying used cars. The paperwork took less than a day, and they delivered it to my doorstep. Zero stress.",
+    text: "Big Boy Cars completely changed my mind about buying used cars. The paperwork took less than a day, and they delivered it to my doorstep. Zero stress.",
   },
   {
     name: 'Arjun Nair',

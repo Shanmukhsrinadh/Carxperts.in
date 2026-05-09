@@ -66,7 +66,7 @@ export default function WhyUs() {
     <section className="py-20 bg-slate-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-14">
-          <p className="text-xs font-bold text-sky-600 uppercase tracking-widest mb-2">Why AutoPrime</p>
+          <p className="text-xs font-bold text-sky-600 uppercase tracking-widest mb-2">Why Big Boy Cars</p>
           <h2 className="text-3xl sm:text-4xl font-black text-slate-800">We're Not Just a Dealership.</h2>
           <p className="text-slate-400 mt-3 max-w-lg mx-auto text-base">
             We're your car-buying partner — before, during, and long after you drive away.

@@ -52,7 +52,7 @@ export default function Hero({ onSellClick, onBrowse }) {
   const car = FEATURED[active];
 
   return (
-    <section className="hero-gradient relative overflow-hidden min-h-[92vh] flex items-center">
+    <section className="hero-gradient relative overflow-hidden min-h-[92svh] sm:min-h-[92vh] flex items-center">
 
       {/* ── Ambient blobs ── */}
       <div className="absolute inset-0 pointer-events-none">
@@ -67,7 +67,7 @@ export default function Hero({ onSellClick, onBrowse }) {
         />
       </div>
 
-      <div className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-0">
+      <div className="relative w-full max-w-7xl mx-auto px-2 sm:px-6 lg:px-8 py-20 sm:py-0 -mt-4 sm:mt-0">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center">
 
           {/* ── LEFT: Copy ── */}
@@ -76,7 +76,7 @@ export default function Hero({ onSellClick, onBrowse }) {
             {/* Badge */}
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-sky-500/20 border border-sky-500/30 mb-6">
               <span className="w-2 h-2 rounded-full bg-sky-400 animate-pulse" />
-              <span className="text-sky-300 text-xs font-bold uppercase tracking-widest">Mumbai's Most Trusted Pre-Owned Cars</span>
+              <span className="text-sky-300 text-xs font-bold uppercase tracking-widest">Big Boy Cars — Mumbai's Most Trusted</span>
             </div>
 
             {/* Headline */}
@@ -147,7 +147,7 @@ export default function Hero({ onSellClick, onBrowse }) {
           </div>
 
           {/* ── RIGHT: Live car showcase ── */}
-          <div className="order-1 lg:order-2 relative flex items-center justify-center lg:justify-end">
+          <div className="hidden lg:flex order-1 lg:order-2 relative items-center justify-end">
             {/* Glow behind card */}
             <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-sky-500/10 to-indigo-600/15 blur-2xl scale-110" />
 

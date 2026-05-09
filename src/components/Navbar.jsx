@@ -35,7 +35,7 @@ export default function Navbar({ onSellClick }) {
               </svg>
             </div>
             <span className="text-white font-black text-xl tracking-tight">
-              Auto<span className="text-gradient">Prime</span>
+              Big Boy<span className="text-gradient"> Cars</span>
             </span>
           </Link>
 
@@ -65,7 +65,7 @@ export default function Navbar({ onSellClick }) {
             ))}
             <div className="w-px h-4 bg-white/20 mx-2" />
             <a
-              href="tel:+919999999999"
+              href="tel:+918143511034"
               className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-white/10 transition"
             >
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -116,7 +116,7 @@ export default function Navbar({ onSellClick }) {
             ))}
             <a href="/#fleet" onClick={() => setMenuOpen(false)} className="block px-4 py-2.5 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-white/10">Fleet</a>
             <a href="/#about" onClick={() => setMenuOpen(false)} className="block px-4 py-2.5 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-white/10">About</a>
-            <a href="tel:+919999999999" className="block px-4 py-2.5 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-white/10">📞 Call Us</a>
+            <a href="tel:+918143511034" className="block px-4 py-2.5 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-white/10">📞 Call Us</a>
             <button
               onClick={() => { setMenuOpen(false); onSellClick(); }}
               className="w-full mt-1 px-4 py-2.5 rounded-lg text-sm font-semibold btn-primary text-white"

@@ -1,158 +1,125 @@
 export default function Footer({ onSellClick }) {
   return (
-    <footer className="bg-slate-900 text-slate-300">
-      {/* Top CTA strip */}
-      <div className="border-b border-slate-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
+    <footer className="bg-white pt-16 pb-6">
+
+      {/* FULL WIDTH BACKGROUND */}
+      <div className="bg-slate-900 rounded-3xl mx-3 sm:mx-6 lg:mx-8 shadow-[0_20px_60px_rgba(0,0,0,0.25)]">
+
+        {/* ALIGNED CONTENT (same as About section) */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+          {/* CTA */}
+          <div className="border-b border-slate-800 py-6 sm:py-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+
             <div>
-              <h3 className="text-2xl font-black text-white">Ready to find your perfect car?</h3>
-              <p className="text-slate-400 mt-1">Browse our verified fleet or speak to our team today.</p>
+              <h2 className="text-lg sm:text-xl font-bold text-white">
+                Ready to find your perfect car?
+              </h2>
+              <p className="text-slate-400 text-sm">
+                Browse our verified fleet or speak to our team today.
+              </p>
             </div>
-            <div className="flex gap-3 flex-shrink-0">
+
+            <div className="flex gap-2 w-full sm:w-auto">
               <a
-                href="tel:+919999999999"
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl border border-slate-700 text-white text-sm font-semibold hover:border-slate-500 transition"
+                href="tel:+918143511034"
+                className="flex-1 sm:flex-none text-center px-4 py-2 rounded-lg border border-slate-700 text-white text-sm font-medium hover:border-slate-500 transition"
               >
-                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.948V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 7V5z" />
-                </svg>
                 Call Us
               </a>
+
               <a
                 href="/#fleet"
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl btn-primary text-white text-sm font-semibold hover:opacity-90 transition shadow-md"
+                className="flex-1 sm:flex-none text-center px-4 py-2 rounded-lg btn-primary text-white text-sm font-medium shadow-md"
               >
-                Browse Fleet
-                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
+                Browse →
               </a>
             </div>
-          </div>
-        </div>
-      </div>
 
-      {/* Main footer */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
-          {/* Brand */}
-          <div className="lg:col-span-1">
-            <div className="flex items-center gap-2.5 mb-4">
-              <div className="w-8 h-8 rounded-lg btn-primary flex items-center justify-center">
-                <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z" />
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10l2-1 3 3 3-3 2 1z" />
-                </svg>
+          </div>
+
+          {/* Main Footer */}
+          <div className="py-8 sm:py-10">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+
+              {/* Brand */}
+              <div className="col-span-2 md:col-span-1">
+                <div className="flex items-center gap-2 mb-3">
+                  <div className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center overflow-hidden">
+                    <img src="/logo.png" alt="Big Boy Cars logo" className="w-full h-full object-contain" />
+                  </div>
+                  <h1 className="text-lg font-bold text-white">Big Boy Cars</h1>
+                </div>
+
+                <p className="text-xs text-slate-400 mb-3">
+                  Mumbai’s trusted pre-owned car dealership since 2014.
+                </p>
+
+                <div className="flex flex-wrap gap-2">
+                  <span className="text-[10px] px-2 py-1 rounded bg-slate-800 text-slate-300">ISO Certified</span>
+                  <span className="text-[10px] px-2 py-1 rounded bg-slate-800 text-slate-300">150-Point Check</span>
+                  <span className="text-[10px] px-2 py-1 rounded bg-slate-800 text-slate-300">4.9★ Rated</span>
+                </div>
               </div>
-              <span className="text-white font-black text-xl tracking-tight">
-                Auto<span className="text-gradient">Prime</span>
-              </span>
-            </div>
-            <p className="text-sm leading-relaxed text-slate-400 mb-5">
-              Mumbai's most trusted pre-owned car dealership since 2014. Handpicked, inspected, and priced with complete transparency.
-            </p>
-            {/* Trust badges */}
-            <div className="flex flex-wrap gap-2">
-              {['ISO Certified', '150-Pt Inspection', '4.9★ Rated'].map(b => (
-                <span key={b} className="text-xs px-2.5 py-1 rounded-full bg-slate-800 text-slate-300 border border-slate-700 font-medium">{b}</span>
-              ))}
-            </div>
-          </div>
 
-          {/* Quick Links */}
-          <div>
-            <h4 className="text-white font-bold mb-5 text-sm uppercase tracking-wider">Explore</h4>
-            <ul className="space-y-3 text-sm">
-              <li><a href="/" className="text-slate-400 hover:text-sky-400 transition-colors">Home</a></li>
-              <li><a href="/#fleet" className="text-slate-400 hover:text-sky-400 transition-colors">Browse Fleet</a></li>
-              <li><a href="/compare" className="text-slate-400 hover:text-sky-400 transition-colors">Compare Cars</a></li>
-              <li><a href="/#about" className="text-slate-400 hover:text-sky-400 transition-colors">Our Story</a></li>
-              <li>
-                <button onClick={onSellClick} className="text-slate-400 hover:text-sky-400 transition-colors">
-                  Sell Your Car
+              {/* Explore */}
+              <nav>
+                <h3 className="text-xs font-semibold text-white mb-3 uppercase">Explore</h3>
+                <ul className="space-y-2 text-xs text-slate-400">
+                  <li><a href="/" className="hover:text-sky-400">Home</a></li>
+                  <li><a href="/#fleet" className="hover:text-sky-400">Browse Fleet</a></li>
+                  <li><a href="/compare" className="hover:text-sky-400">Compare Cars</a></li>
+                  <li><button onClick={onSellClick} className="hover:text-sky-400">Sell Your Car</button></li>
+                </ul>
+              </nav>
+
+              {/* Services */}
+              <div>
+                <h3 className="text-xs font-semibold text-white mb-3 uppercase">Services</h3>
+                <ul className="space-y-2 text-xs text-slate-400">
+                  <li>Car Finance & EMI</li>
+                  <li>RC Transfer</li>
+                  <li>150-Point Inspection</li>
+                  <li>Doorstep Delivery</li>
+                </ul>
+              </div>
+
+              {/* Contact */}
+              <address className="not-italic">
+                <h3 className="text-xs font-semibold text-white mb-3 uppercase">Contact</h3>
+
+                <div className="space-y-2 text-xs text-slate-400">
+                  <a href="tel:+918143511034" className="block hover:text-white">
+                    📞 +91 81435 11034
+                  </a>
+                  <a href="https://wa.me/918143511034" target="_blank" rel="noopener noreferrer" className="block hover:text-green-400">
+                    💬 WhatsApp Us
+                  </a>
+                  <a href="https://maps.app.goo.gl/vb4cLMC7tRED9Pdg6" target="_blank" rel="noopener noreferrer" className="block hover:text-sky-400">
+                    📍 View on Google Maps
+                  </a>
+                </div>
+
+                <button
+                  onClick={onSellClick}
+                  className="mt-4 w-full py-2.5 rounded-lg btn-primary text-white text-xs font-semibold shadow-md"
+                >
+                  Sell Your Car →
                 </button>
-              </li>
-            </ul>
-          </div>
+              </address>
 
-          {/* Services */}
-          <div>
-            <h4 className="text-white font-bold mb-5 text-sm uppercase tracking-wider">Services</h4>
-            <ul className="space-y-3 text-sm text-slate-400">
-              <li className="flex items-center gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-sky-500 flex-shrink-0" />
-                Car Finance & EMI
-              </li>
-              <li className="flex items-center gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-sky-500 flex-shrink-0" />
-                RC Transfer & Paperwork
-              </li>
-              <li className="flex items-center gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-sky-500 flex-shrink-0" />
-                150-Point Inspection
-              </li>
-              <li className="flex items-center gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-sky-500 flex-shrink-0" />
-                Doorstep Delivery
-              </li>
-              <li className="flex items-center gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-sky-500 flex-shrink-0" />
-                7-Day Return Policy
-              </li>
-              <li className="flex items-center gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-sky-500 flex-shrink-0" />
-                Post-Sale Support
-              </li>
-            </ul>
-          </div>
+            </div>
 
-          {/* Contact + Sell */}
-          <div>
-            <h4 className="text-white font-bold mb-5 text-sm uppercase tracking-wider">Contact Us</h4>
-            <div className="space-y-4 text-sm mb-6">
-              <a href="tel:+919999999999" className="flex items-center gap-3 text-slate-400 hover:text-sky-400 transition-colors">
-                <div className="w-8 h-8 rounded-lg bg-slate-800 flex items-center justify-center flex-shrink-0">
-                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.948V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 7V5z" />
-                  </svg>
-                </div>
-                +91 99999 99999
-              </a>
-              <a href="https://wa.me/919999999999" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-slate-400 hover:text-green-400 transition-colors">
-                <div className="w-8 h-8 rounded-lg bg-slate-800 flex items-center justify-center flex-shrink-0">
-                  <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-                  </svg>
-                </div>
-                WhatsApp Us
-              </a>
-              <div className="flex items-start gap-3 text-slate-400">
-                <div className="w-8 h-8 rounded-lg bg-slate-800 flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                  </svg>
-                </div>
-                <span>AutoPrime Motors,<br />Andheri West, Mumbai 400053</span>
+            {/* Bottom */}
+            <div className="mt-8 pt-4 border-t border-slate-800 flex flex-col sm:flex-row justify-between gap-2 text-[11px] text-slate-500">
+              <p>© {new Date().getFullYear()} Big Boy Cars Pvt. Ltd.</p>
+              <div className="flex gap-4">
+                <span className="hover:text-slate-300 cursor-pointer">Privacy</span>
+                <span className="hover:text-slate-300 cursor-pointer">Terms</span>
+                <span className="hover:text-slate-300 cursor-pointer">Disclaimer</span>
               </div>
             </div>
-            <button
-              onClick={onSellClick}
-              className="w-full py-2.5 rounded-xl btn-primary text-white text-sm font-bold hover:opacity-90 transition shadow-md"
-            >
-              Sell Your Car →
-            </button>
-          </div>
-        </div>
 
-        {/* Bottom bar */}
-        <div className="mt-12 pt-6 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-500">
-          <p>© {new Date().getFullYear()} AutoPrime Motors Pvt. Ltd. All rights reserved.</p>
-          <div className="flex gap-5">
-            <span className="hover:text-slate-400 cursor-pointer transition">Privacy Policy</span>
-            <span className="hover:text-slate-400 cursor-pointer transition">Terms of Service</span>
-            <span className="hover:text-slate-400 cursor-pointer transition">Disclaimer</span>
           </div>
         </div>
       </div>

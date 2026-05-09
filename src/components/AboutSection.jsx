@@ -22,7 +22,7 @@ export default function AboutSection() {
               Built on trust.
             </h2>
             <p className="text-slate-500 leading-relaxed mb-5">
-              AutoPrime started in a small garage in Mumbai in 2014. Our founder Rohan Mehta spent years watching families overpay for cars they couldn't fully trust — and decided to fix that. Not with gimmicks, but with transparency.
+              Big Boy Cars started in a small garage in Mumbai in 2014. Our founder Rohan Mehta spent years watching families overpay for cars they couldn't fully trust — and decided to fix that. Not with gimmicks, but with transparency.
             </p>
             <p className="text-slate-500 leading-relaxed mb-8">
               Every car in our fleet goes through a rigorous 150-point check. Every price is what you pay — no dealer markups, no hidden service charges, no last-minute surprises. We believe buying a used car should feel as good as buying a new one.
