@@ -52,7 +52,7 @@ export default function Footer({ onSellClick }) {
                 </div>
 
                 <p className="text-xs text-slate-400 mb-3">
-                  Mumbai’s trusted pre-owned car dealership since 2014.
+                  Andhra’s trusted pre-owned car dealership.
                 </p>
 
                 <div className="flex flex-wrap gap-2">
