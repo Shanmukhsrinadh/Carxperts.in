@@ -1,8 +1,8 @@
 const MILESTONES = [
-  { year: '2014', event: 'Founded in a single garage in Mumbai with 5 cars and a big dream.' },
+  { year: '2014', event: 'Founded in Vijayawada with 5 cars and a big dream — to make used car buying honest.' },
   { year: '2017', event: 'Expanded to 3 cities. Crossed 500 happy customers and launched finance tie-ups.' },
   { year: '2020', event: 'Went digital-first with virtual tours and doorstep delivery during the pandemic.' },
-  { year: '2024', event: 'Now serving 12 cities, 2000+ cars sold, and rated 4.9★ by our customers.' },
+  { year: '2024', event: 'Now serving Andhra Pradesh, 2000+ cars sold, and rated 4.9★ by our customers.' },
 ];
 
 export default function AboutSection() {
@@ -22,7 +22,7 @@ export default function AboutSection() {
               Built on trust.
             </h2>
             <p className="text-slate-500 leading-relaxed mb-5">
-              Big Boy Cars started in a small garage in Mumbai in 2014. Our founder Rohan Mehta spent years watching families overpay for cars they couldn't fully trust — and decided to fix that. Not with gimmicks, but with transparency.
+              carxperts.in started in Vijayawada with one simple goal — to make buying a pre-owned car feel safe and stress-free. Our founder spent years watching families overpay for cars they couldn't fully trust and decided to fix that. Not with gimmicks, but with transparency.
             </p>
             <p className="text-slate-500 leading-relaxed mb-8">
               Every car in our fleet goes through a rigorous 150-point check. Every price is what you pay — no dealer markups, no hidden service charges, no last-minute surprises. We believe buying a used car should feel as good as buying a new one.

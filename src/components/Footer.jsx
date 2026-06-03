@@ -22,7 +22,7 @@ export default function Footer({ onSellClick }) {
 
             <div className="flex gap-2 w-full sm:w-auto">
               <a
-                href="tel:+918143511034"
+                href="tel:+918466996629"
                 className="flex-1 sm:flex-none text-center px-4 py-2 rounded-lg border border-slate-700 text-white text-sm font-medium hover:border-slate-500 transition"
               >
                 Call Us
@@ -46,13 +46,13 @@ export default function Footer({ onSellClick }) {
               <div className="col-span-2 md:col-span-1">
                 <div className="flex items-center gap-2 mb-3">
                   <div className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center overflow-hidden">
-                    <img src="/logo.png" alt="Big Boy Cars logo" className="w-full h-full object-contain" />
+                    <img src="/logo.png" alt="carxperts.in logo" className="w-full h-full object-contain" />
                   </div>
-                  <h1 className="text-lg font-bold text-white">Big Boy Cars</h1>
+                  <h1 className="text-lg font-bold text-white">carxperts.in</h1>
                 </div>
 
                 <p className="text-xs text-slate-400 mb-3">
-                  Mumbai’s trusted pre-owned car dealership since 2014.
+                  Vijayawada's trusted pre-owned car dealership.
                 </p>
 
                 <div className="flex flex-wrap gap-2">
@@ -89,14 +89,14 @@ export default function Footer({ onSellClick }) {
                 <h3 className="text-xs font-semibold text-white mb-3 uppercase">Contact</h3>
 
                 <div className="space-y-2 text-xs text-slate-400">
-                  <a href="tel:+918143511034" className="block hover:text-white">
-                    📞 +91 81435 11034
+                  <a href="tel:+918466996629" className="block hover:text-white">
+                    📞 +91 84669 96629
                   </a>
-                  <a href="https://wa.me/918143511034" target="_blank" rel="noopener noreferrer" className="block hover:text-green-400">
+                  <a href="https://wa.me/918466996629" target="_blank" rel="noopener noreferrer" className="block hover:text-green-400">
                     💬 WhatsApp Us
                   </a>
                   <a href="https://maps.app.goo.gl/vb4cLMC7tRED9Pdg6" target="_blank" rel="noopener noreferrer" className="block hover:text-sky-400">
-                    📍 View on Google Maps
+                    📍 Vijayawada, Andhra Pradesh
                   </a>
                 </div>
 
@@ -112,7 +112,7 @@ export default function Footer({ onSellClick }) {
 
             {/* Bottom */}
             <div className="mt-8 pt-4 border-t border-slate-800 flex flex-col sm:flex-row justify-between gap-2 text-[11px] text-slate-500">
-              <p>© {new Date().getFullYear()} Big Boy Cars Pvt. Ltd.</p>
+              <p>© {new Date().getFullYear()} carxperts.in — Vijayawada, Andhra Pradesh</p>
               <div className="flex gap-4">
                 <span className="hover:text-slate-300 cursor-pointer">Privacy</span>
                 <span className="hover:text-slate-300 cursor-pointer">Terms</span>

@@ -345,7 +345,7 @@ export default function CarDetail({ compareList, onToggleCompare }) {
 
               {/* Trust badges */}
               <div className="bg-white rounded-2xl border border-slate-100 shadow-sm p-5">
-                <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-3">Why Buy From Big Boy Cars</p>
+                <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-3">Why Buy From carxperts.in</p>
                 <div className="space-y-2.5">
                   {[
                     { icon: '🔍', text: '150-Point Inspection Certified' },
@@ -367,7 +367,7 @@ export default function CarDetail({ compareList, onToggleCompare }) {
                 <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-3">Share This Car</p>
                 <div className="flex gap-2">
                   <a
-                    href={`https://wa.me/?text=Check out this ${car.name} on Big Boy Cars: ${window.location.href}`}
+                    href={`https://wa.me/?text=Check out this ${car.name} on carxperts.in: ${window.location.href}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl bg-green-50 border border-green-100 text-green-700 text-sm font-semibold hover:bg-green-100 transition"

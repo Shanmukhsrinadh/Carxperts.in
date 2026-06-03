@@ -26,6 +26,6 @@ export function buildSellWhatsAppMessage(form) {
   );
 }
 
-export const WHATSAPP_NUMBER = '918143511034';
-export const CALL_NUMBER = '+91 81435 11034';
+export const WHATSAPP_NUMBER = '918466996629';
+export const CALL_NUMBER = '+91 84669 96629';
 export const MAPS_URL = 'https://maps.app.goo.gl/vb4cLMC7tRED9Pdg6';
